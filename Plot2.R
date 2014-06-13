@@ -6,7 +6,7 @@ myData <- read.csv.sql(myFile, sql=mySql, sep=";")
 
 colnames(myData) <- c('Date', 'Time', 'Global_active_power', 'Global_reactive_power', 'Voltage', 'Global_intensity', 'Sub_metering_1', 'Sub_metering_2', 'Sub_metering_3')
 
-## Merging Date and Time columns into one vector with the appropriate format.
+## Merging Both The Date and Time columns into one  vector with the appropriate format.
 
 times <- strptime(paste(myData$Date,myData$Time,sep=" "),"%d/%m/%Y %H:%M:%S")
 

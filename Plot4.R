@@ -1,7 +1,7 @@
 par(mfrow=c(2,2)) ##  combine multiple plots into one overall graph to create a matrix of 2rows x 2cols plots that are filled in by row
 
 
-## display all 4 plots
+## display all the 4 plots
 
 
 all4 <- with(myData, 
