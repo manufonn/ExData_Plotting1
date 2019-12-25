@@ -23,15 +23,8 @@ elecpower2$Time <- strptime(elecpower2$Time, format = "%y/%m/%d %H:%M:%S")
 
 
 
-##   Plot3
+##  Plot1
+par(mfrow = c(1,1)) #plot only one graph to entire screen.
 
-par(mfrow = c(1,1))
-
-plot(elec5$Time, elec5$Sub_metering_1, type = "l", col = "black", xlab = "", ylab = "Energy sub metering")
-
-lines(elec5$Time, elec5$Sub_metering_2, type = "l", col = "red")
-
-lines(elec5$Time, elec5$Sub_metering_3, type = "l", col = "blue")
-
-legend("topright", cex = 0.5, col = c("black", "red", "blue"), lty = 1, legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+hist(elec5$Global_active_power, xlab = "Global Active Power", col = "red", main = "Global Active Power" )
 

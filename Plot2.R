@@ -1,16 +1,30 @@
-myFile <- "household_power_consumption.txt"
-
-mySql <- "SELECT * from file WHERE Date = '1/2/2007' OR Date = '2/2/2007'"
-
-myData <- read.csv.sql(myFile, sql=mySql, sep=";")
-
-colnames(myData) <- c('Date', 'Time', 'Global_active_power', 'Global_reactive_power', 'Voltage', 'Global_intensity', 'Sub_metering_1', 'Sub_metering_2', 'Sub_metering_3')
-
-## Merging Both The Date and Time columns into one  vector with the appropriate format.
-
-times <- strptime(paste(myData$Date,myData$Time,sep=" "),"%d/%m/%Y %H:%M:%S")
 
 
-plot(times, myData$Global_active_power, type="n", xlab="", ylab="Global_active_power")
+getwd()  # checks the working directory and file location. Downloaded file should be here.
 
-lines(times, myData$Global_active_power, col="orange")
+elecpower <- read.csv(file ="household_power_consumption.txt", sep=";", na.strings="?")
+        # read the dataset into r
+
+
+
+
+elecpower$Date <- as.Date(elecpower$Date, format = "%d/%m/%Y")
+        #convert the Date column class to 'Date' format
+
+elecpower2 <- elecpower %>% filter(Date >= as.Date("2007-2-1") & Date <= as.Date("2007-2-2"))
+        #select only the rows that match a given date
+        
+
+
+elecpower2$Time <- strftime(paste(elecpower2$Date, elecpower2$Time), format = "%y/%m/%d %H:%M:%S")
+
+elecpower2$Time <- strptime(elecpower2$Time, format = "%y/%m/%d %H:%M:%S")
+        #convert Time column to posix format
+
+
+
+##  Plot2
+par(mfrow = c(1,1))
+
+plot(elecpower2$Time, elecpower2$Global_active_power, type = "l", xlab = "", ylab = "Global Active Power (Kilowatts)")
+
