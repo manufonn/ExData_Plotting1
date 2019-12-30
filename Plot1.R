@@ -2,6 +2,13 @@
 
 getwd()  # checks the working directory and file location. Downloaded file should be here.
 
+install.packages("tidyverse") #we will be using the dplyr package specifically, from tidyverse for most of project
+
+library(tidyverse)
+
+
+
+
 elecpower <- read.csv(file ="household_power_consumption.txt", sep=";", na.strings="?")
         # read the dataset into r
 
